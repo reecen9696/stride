@@ -107,7 +107,7 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
             className="w-full object-contain max-h-[50%]"
           />
           <div className="p-8 flex flex-col space-y-2">
-            <h3 className="text-title font-semibold">ST V1</h3>
+            <h3 className="text-title font-semibold">SI V1</h3>
             <p className="text-bodyHighlight">$120</p>
             <p className="text-body">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
@@ -144,10 +144,10 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
           />
           <div className="flex flex-col space-y-2 w-80">
             <div className="flex flex-col space-y-2 w-80">
-              <h3 className="text-title font-semibold">ST V1</h3>
+              <h3 className="text-title font-semibold">SI V1<</h3>
               <p className="text-bodyHighlight">$120</p>
               <p className="text-body mb-4">
-                ST V1 insoles <br />
+                SI V1 insoles <br />
                 Premium app access <br />
                 FREE U$45 Accessory kit included
               </p>
