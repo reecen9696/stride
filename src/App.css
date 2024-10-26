@@ -52,5 +52,5 @@ body {
 }
 
 .slow-bg-transition {
-  transition: background-color 2s ease; /* Adjust time as needed */
+  transition: background-color 3s ease;
 }
