@@ -1,14 +1,15 @@
-import React from "react";
-import "./App.css";
-import Home from "./pages/Home";
+import React, { useState } from "react";
 import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
 
 function App() {
+  const [logoColor, setLogoColor] = useState("black"); // Initial color for the logo
+
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
+      <Navbar color={logoColor} /> {/* Pass logoColor to Navbar */}
       <main className="flex-grow">
-        <Home />
+        <Home setLogoColor={setLogoColor} /> {/* Pass setLogoColor to Home */}
       </main>
     </div>
   );

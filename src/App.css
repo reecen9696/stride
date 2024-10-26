@@ -50,3 +50,7 @@ body {
 .hidden {
   display: none;
 }
+
+.slow-bg-transition {
+  transition: background-color 2s ease; /* Adjust time as needed */
+}

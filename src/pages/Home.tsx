@@ -5,49 +5,57 @@ import Infographicinsole from "../assets/images/infographicinsole.png";
 import Chevron from "../assets/icons/chevron.svg";
 import "../App.css";
 
-const Home = () => {
+// Define prop type for setLogoColor
+type HomeProps = {
+  setLogoColor: React.Dispatch<React.SetStateAction<string>>;
+};
+
+const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
+  const animationEnabled = false; // Set to `true` to enable animations, `false` to disable
   const [animationStep, setAnimationStep] = useState<number | null>(null);
   const [isFinalSectionVisible, setIsFinalSectionVisible] = useState(false);
   const finalSectionRef = useRef<HTMLDivElement | null>(null);
 
-  // State to track selected size
   const [selectedSize, setSelectedSize] = useState("M");
 
   useEffect(() => {
-    // Start the animation sequence with an initial delay
+    // Start animation sequence with an initial delay
     setTimeout(() => {
       const sequence = [
-        () => setAnimationStep(1), // "Life is a marathon" fades in
-        () => setAnimationStep(2), // "Life is a marathon" fades out
-        () => setAnimationStep(3), // Background changes to black
-        () => setAnimationStep(4), // "Enjoy the run" fades in
-        () => setAnimationStep(5), // "Enjoy the run" fades out
-        () => setAnimationStep(6), // Display full page content
+        () => {
+          setAnimationStep(1);
+          setLogoColor("black");
+        },
+        () => setAnimationStep(2),
+        () => {
+          setAnimationStep(3);
+          setLogoColor("white");
+        },
+        () => setAnimationStep(4),
+        () => setAnimationStep(5),
+        () => setAnimationStep(6),
       ];
 
       sequence.forEach((step, i) => {
-        setTimeout(step, i * 2000); // Adjust delay for each step
+        setTimeout(step, i * 2000);
       });
-    }, 1000); // Initial delay before starting sequence
-  }, []);
+    }, 1000);
+  }, [setLogoColor]);
 
-  // IntersectionObserver for fading out the "scroll" indicator on the last page
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsFinalSectionVisible(entry.isIntersecting);
       },
-      { threshold: 0.5 } // Adjust threshold as needed
+      { threshold: 0.5 }
     );
 
-    if (finalSectionRef.current) {
-      observer.observe(finalSectionRef.current);
-    }
+    const currentRef = finalSectionRef.current;
+
+    if (currentRef) observer.observe(currentRef);
 
     return () => {
-      if (finalSectionRef.current) {
-        observer.unobserve(finalSectionRef.current);
-      }
+      if (currentRef) observer.unobserve(currentRef);
     };
   }, []);
 
@@ -57,7 +65,7 @@ const Home = () => {
       <div
         className={`${
           (animationStep ?? 0) < 6
-            ? "fixed h-screen w-full flex items-center justify-center transition-colors duration-500"
+            ? "fixed h-screen w-full flex items-center justify-center slow-bg-transition"
             : "hidden"
         } ${(animationStep ?? 0) >= 3 ? "bg-black" : "bg-white"}`}
       >
@@ -70,7 +78,7 @@ const Home = () => {
               : "hidden"
           } text-black text-h2`}
         >
-          Life is a marathon
+          Every step tells a story
         </p>
         <p
           className={`${
@@ -81,7 +89,7 @@ const Home = () => {
               : "hidden"
           } text-white text-h2`}
         >
-          Enjoy the run
+          Measure what moves you
         </p>
       </div>
 
@@ -127,20 +135,23 @@ const Home = () => {
         {/* Page 3 - Purchase with Size Selector */}
         <section
           className="w-full h-screen flex flex-col items-center justify-start pt-20 snap-start relative"
-          ref={finalSectionRef} // Ref for observing this section
+          ref={finalSectionRef}
         >
           <img
             src={Infographicinsole}
             alt="Infographic shoe"
-            className="w-full object-contain max-h-[40%] flex-shrink-0"
+            className="w-full object-contain max-h-[30%] flex-shrink-0"
           />
-          <div className="flex flex-col space-y-4 w-80">
-            <p className="text-title font-semibold">$125</p>
-            <p className="text-body">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim.
-            </p>
+          <div className="flex flex-col space-y-2 w-80">
+            <div className="flex flex-col space-y-2 w-80">
+              <h3 className="text-title font-semibold">ST V1</h3>
+              <p className="text-bodyHighlight">$120</p>
+              <p className="text-body mb-4">
+                ST V1 insoles <br />
+                Premium app access <br />
+                FREE U$45 Accessory kit included
+              </p>
+            </div>
 
             {/* Size Selector */}
             <div className="flex flex-col space-y-2 pt-2">
@@ -151,22 +162,22 @@ const Home = () => {
                     key={size}
                     onClick={() => setSelectedSize(size)}
                     className={`cursor-pointer px-4 py-2 relative ${
-                      selectedSize === size ? "border border-highlight" : ""
+                      selectedSize === size ? "border border-white" : ""
                     }`}
                   >
                     {size}
                   </span>
                 ))}
               </div>
-              <div className="underline">Fit / Size Guide</div>
+              <p className="underline text-body">Fit / Size Guide</p>
+              <button className="bg-highlight text-button text-black w-80 h-14">
+                PRE ORDER
+              </button>
             </div>
-            <button className="bg-highlight text-button text-black w-80 h-14">
-              PRE ORDER
-            </button>
           </div>
         </section>
 
-        {/* Scroll Indicator - Fades out on Final Section */}
+        {/* Scroll Indicator */}
         <div
           className={`w-full fixed bottom-0 flex flex-col items-center p-4 transition-opacity duration-500 ${
             isFinalSectionVisible ? "opacity-0" : "opacity-100"

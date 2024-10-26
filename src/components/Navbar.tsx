@@ -1,10 +1,14 @@
 import React from "react";
-import Logo from "../assets/logo.svg";
+import { ReactComponent as Logo } from "../assets/logo.svg";
 
-const Navbar = () => {
+type NavbarProps = {
+  color: string; // Add color prop for dynamic logo color
+};
+
+const Navbar: React.FC<NavbarProps> = ({ color }) => {
   return (
-    <nav className=" fixed top-0 w-full h-16 flex items-center justify-center z-50">
-      <img src={Logo} alt="Stride Logo" />
+    <nav className="fixed top-0 w-full h-16 flex items-center justify-center z-50">
+      <Logo className="w-24 h-24" style={{ fill: color }} />
     </nav>
   );
 };
