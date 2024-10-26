@@ -8,7 +8,7 @@ type NavbarProps = {
 const Navbar: React.FC<NavbarProps> = ({ color }) => {
   return (
     <nav className="fixed top-0 w-full h-16 flex items-center justify-center z-50">
-      <Logo className="w-24 h-24" style={{ fill: color }} />
+      <Logo className="w-28 h-28" style={{ fill: color }} />
     </nav>
   );
 };

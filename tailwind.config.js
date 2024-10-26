@@ -11,6 +11,7 @@ module.exports = {
       fontSize: {
         title: ["24px", { letterSpacing: "-0.03em" }], // TITLE style with -3% letter spacing
         h2: ["16px", { fontWeight: "500" }], // H2 with medium weight
+        h3: ["16px"],
         button: ["16px", { fontWeight: "500" }], // BUTTON with medium weight
         body: [
           "14px",

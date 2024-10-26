@@ -76,7 +76,7 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
               : animationStep === 2
               ? "fade-out"
               : "hidden"
-          } text-black text-h2`}
+          } text-black text-h3`}
         >
           Every step tells a story
         </p>
@@ -87,7 +87,7 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
               : animationStep === 5
               ? "fade-out"
               : "hidden"
-          } text-white text-h2`}
+          } text-white text-h3`}
         >
           Measure what moves you
         </p>
@@ -183,7 +183,7 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
             isFinalSectionVisible ? "opacity-0" : "opacity-100"
           }`}
         >
-          <p className="text-button">Scroll</p>
+          <p className="text-h3">Scroll</p>
           <img src={Chevron} alt="chevron" />
         </div>
       </div>
