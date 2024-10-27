@@ -4,121 +4,92 @@ import React, { useEffect } from "react";
 declare global {
   interface Window {
     ShopifyBuy: any;
+    shopifyClient: any;
   }
 }
 
-const PurchaseButton: React.FC = () => {
+type PurchaseButtonProps = {
+  selectedSize: string;
+};
+
+const PurchaseButton: React.FC<PurchaseButtonProps> = ({ selectedSize }) => {
   useEffect(() => {
     const scriptURL =
       "https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js";
 
-    // Load the script only if it hasn't been loaded already
-    function loadScript() {
+    function loadShopifyBuySDK() {
       if (!document.getElementById("shopify-buy-button-script")) {
         const script = document.createElement("script");
         script.id = "shopify-buy-button-script";
         script.async = true;
         script.src = scriptURL;
         document.head.appendChild(script);
-        script.onload = ShopifyBuyInit;
-      } else {
-        ShopifyBuyInit();
+        script.onload = initializeShopifyClient;
+      } else if (window.ShopifyBuy) {
+        initializeShopifyClient();
       }
     }
 
-    // Initialize Shopify Buy Button
-    function ShopifyBuyInit() {
-      if (window.ShopifyBuy) {
-        const client = window.ShopifyBuy.buildClient({
-          domain: "n1h6w2-ma.myshopify.com",
-          storefrontAccessToken: "65777bee16917189b12cbcf23a5fac63",
-        });
-
-        // Clear any existing component to prevent duplication
-        const productComponent = document.getElementById(
-          "product-component-1730069069545"
-        );
-        if (productComponent) {
-          productComponent.innerHTML = "";
-        }
-
-        window.ShopifyBuy.UI.onReady(client).then((ui: any) => {
-          ui.createComponent("product", {
-            id: "14778825179296", // Replace with your actual product ID
-            node: document.getElementById("product-component-1730069069545"),
-            moneyFormat: "%24%7B%7Bamount%7D%7D",
-            options: {
-              product: {
-                contents: {
-                  img: false, // Hide product image
-                  title: false, // Hide product title
-                  price: false, // Hide product price
-                  description: false, // Hide product description
-                  button: true, // Only show the purchase button
-                },
-                styles: {
-                  button: {
-                    color: "#000000",
-                    ":hover": {
-                      color: "#000000",
-                      backgroundColor: "#e4e600",
-                    },
-                    backgroundColor: "#fdff00",
-                    ":focus": {
-                      backgroundColor: "#e4e600",
-                    },
-                    borderRadius: "0px",
-                  },
-                },
-                text: {
-                  button: "PRE ORDER", // Customize the button text
-                },
-              },
-              cart: {
-                styles: {
-                  button: {
-                    color: "#000000",
-                    ":hover": {
-                      color: "#000000",
-                      backgroundColor: "#e4e600",
-                    },
-                    backgroundColor: "#fdff00",
-                    ":focus": {
-                      backgroundColor: "#e4e600",
-                    },
-                    borderRadius: "0px",
-                  },
-                },
-                text: {
-                  total: "Subtotal",
-                  button: "Checkout",
-                },
-              },
-            },
-          });
-        });
-      }
+    function initializeShopifyClient() {
+      if (!window.ShopifyBuy) return;
+      window.shopifyClient = window.ShopifyBuy.buildClient({
+        domain: "n1h6w2-ma.myshopify.com",
+        storefrontAccessToken: "65777bee16917189b12cbcf23a5fac63",
+      });
     }
 
-    // Check if ShopifyBuy is already loaded, else load it
-    if (window.ShopifyBuy) {
-      if (window.ShopifyBuy.UI) {
-        ShopifyBuyInit();
-      } else {
-        loadScript();
-      }
-    } else {
-      loadScript();
-    }
+    loadShopifyBuySDK();
   }, []);
 
+  const addToCart = async () => {
+    if (!window.ShopifyBuy || !window.shopifyClient) {
+      console.error("ShopifyBuy client not initialized");
+      return;
+    }
+
+    try {
+      const productId = "14778825179296";
+      const formattedId = btoa(`gid://shopify/Product/${productId}`);
+      const product = await window.shopifyClient.product.fetch(formattedId);
+
+      if (product) {
+        // Find the variant that matches the selected size
+        const selectedVariant = product.variants.find(
+          (variant: any) => variant.title === selectedSize
+        );
+
+        if (!selectedVariant) {
+          console.error("Selected size variant not found");
+          return;
+        }
+
+        const lineItems = [{ variantId: selectedVariant.id, quantity: 1 }];
+
+        const checkout = await window.shopifyClient.checkout.create();
+        await window.shopifyClient.checkout.addLineItems(
+          checkout.id,
+          lineItems
+        );
+
+        // Redirect to the Shopify checkout page
+        window.location.href = checkout.webUrl;
+      }
+    } catch (error) {
+      console.error("Error adding product to cart:", error);
+    }
+  };
+
   return (
-    <div
-      id="product-component-1730069069545"
-      className="purchase-button-container"
+    <button
+      onClick={addToCart}
+      className="bg-highlight text-button text-black w-80 h-14 font-bold"
+      style={{
+        backgroundColor: "#FFFF01",
+        fontFamily: "Work Sans, sans-serif",
+      }}
     >
-      {/* Only the PURCHASE NOW button will be injected here */}
-    </div>
+      PRE ORDER
+    </button>
   );
 };
 

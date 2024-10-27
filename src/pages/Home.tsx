@@ -171,7 +171,7 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
             <div className="flex flex-col space-y-2 pt-2">
               <h2 className="text-h2 font-medium">Size:</h2>
               <div className="flex w-full justify-between text-h2 font-medium">
-                {["XS", "S", "M", "L", "XL", "XXL"].map((size) => (
+                {["XS", "S", "M", "L", "XL"].map((size) => (
                   <span
                     key={size}
                     onClick={() => setSelectedSize(size)}
@@ -185,7 +185,7 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
               </div>
               <p className="underline text-body">Fit / Size Guide</p>
               <div className="w-full h-full flex items-center justify-center">
-                <PurchaseButton />
+                <PurchaseButton selectedSize={selectedSize} />
               </div>
             </div>
           </div>
