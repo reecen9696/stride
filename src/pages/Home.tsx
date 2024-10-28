@@ -12,8 +12,7 @@ type HomeProps = {
 };
 
 const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
-  const animationEnabled = false; // Set to `true` to enable animations, `false` to disable
-  const skipLoading = false; // Set to `true` to skip loading pages, `false` to show them
+  const skipLoading = true; // Set to `true` to skip loading pages, `false` to show them
   const [animationStep, setAnimationStep] = useState<number | null>(null);
   const [isFinalSectionVisible, setIsFinalSectionVisible] = useState(false);
   const finalSectionRef = useRef<HTMLDivElement | null>(null);
@@ -172,7 +171,7 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
             </div>
 
             {/* Size Selector */}
-            <div className="flex flex-col space-y-2 pt-2">
+            <div className="flex flex-col pt-2">
               <p className="text-bodyHighlight md:text-bodyHighlightmd xl:text-bodyHighlightxl">
                 Size:
               </p>
@@ -190,7 +189,7 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
                 ))}
               </div>
               <p className="underline text-body">Fit / Size Guide</p>
-              <div className="w-full h-full flex items-center justify-center">
+              <div className="w-full pt-16 h-full flex items-center justify-center">
                 <PurchaseButton selectedSize={selectedSize} />
               </div>
             </div>
