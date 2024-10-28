@@ -1,10 +1,11 @@
+// src/pages/Home.tsx
+
 import React, { useState, useEffect, useRef } from "react";
 import ShoeGif from "../assets/images/spinningshoe.gif";
 import Infographic from "../assets/images/infographic.png";
-import Infographicinsole from "../assets/images/infographicinsole.png";
 import Chevron from "../assets/icons/chevron.svg";
 import "../App.css";
-import PurchaseButton from "../components/PurchaseButton";
+import Purchase from "../components/Purchase";
 
 // Define prop type for setLogoColor
 type HomeProps = {
@@ -12,30 +13,26 @@ type HomeProps = {
 };
 
 const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
-  const skipLoading = true; // Set to `true` to skip loading pages, `false` to show them
+  const skipLoading = false; // Set to `true` to skip loading pages, `false` to show them
   const [animationStep, setAnimationStep] = useState<number | null>(null);
   const [isFinalSectionVisible, setIsFinalSectionVisible] = useState(false);
   const finalSectionRef = useRef<HTMLDivElement | null>(null);
 
-  const [selectedSize, setSelectedSize] = useState("M");
-
   useEffect(() => {
     if (skipLoading) {
-      // If skipLoading is true, go directly to the final animation step
       setAnimationStep(6);
       setLogoColor("black");
     } else {
-      // Start animation sequence with an initial delay
       setTimeout(() => {
         const sequence = [
           () => {
             setAnimationStep(1);
-            setLogoColor("black");
+            setLogoColor("black"); // Initial color
           },
           () => setAnimationStep(2),
           () => {
             setAnimationStep(3);
-            setLogoColor("white");
+            setLogoColor("white"); // Change logo color to white when background turns black
           },
           () => setAnimationStep(4),
           () => setAnimationStep(5),
@@ -145,56 +142,10 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
           </div>
         </section>
 
-        {/* Page 3 - Purchase with Size Selector */}
-        <section
-          className="w-full h-screen flex flex-col items-center justify-start pt-20 snap-start relative"
-          ref={finalSectionRef}
-        >
-          <img
-            src={Infographicinsole}
-            alt="Infographic shoe"
-            className="w-full object-contain max-h-[40%] md:max-h-[40%] lg:max-h-[40%] flex-shrink-0"
-          />
-          <div className="flex flex-col space-y-2 w-80">
-            <div className="flex flex-col space-y-2 w-80">
-              <h3 className="text-title font-semibold md:text-titlemd xl:text-titlexl">
-                SI V1
-              </h3>
-              <p className="text-bodyHighlight md:text-bodyHighlightmd xl:text-bodyHighlightxl">
-                $120
-              </p>
-              <p className="text-body md:text-bodymd lg:text-bodyxl">
-                SI V1 insoles <br />
-                Premium app access <br />
-                FREE U$45 Accessory kit included
-              </p>
-            </div>
-
-            {/* Size Selector */}
-            <div className="flex flex-col pt-2">
-              <p className="text-bodyHighlight md:text-bodyHighlightmd xl:text-bodyHighlightxl">
-                Size:
-              </p>
-              <div className="flex w-full justify-between text-h2 font-medium">
-                {["XS", "S", "M", "L", "XL"].map((size) => (
-                  <span
-                    key={size}
-                    onClick={() => setSelectedSize(size)}
-                    className={`cursor-pointer px-4 py-2 relative ${
-                      selectedSize === size ? "border border-white" : ""
-                    }`}
-                  >
-                    {size}
-                  </span>
-                ))}
-              </div>
-              <p className="underline text-body">Fit / Size Guide</p>
-              <div className="w-full pt-16 h-full flex items-center justify-center">
-                <PurchaseButton selectedSize={selectedSize} />
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* Page 3 - Purchase Component */}
+        <div ref={finalSectionRef}>
+          <Purchase />
+        </div>
 
         {/* Scroll Indicator */}
         <div
