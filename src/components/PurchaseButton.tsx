@@ -82,7 +82,7 @@ const PurchaseButton: React.FC<PurchaseButtonProps> = ({ selectedSize }) => {
   return (
     <button
       onClick={addToCart}
-      className="bg-highlight text-button text-black w-80 h-14 font-bold"
+      className="bg-highlight text-button text-black w-80 h-14"
       style={{
         backgroundColor: "#FFFF01",
         fontFamily: "Work Sans, sans-serif",

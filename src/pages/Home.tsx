@@ -13,7 +13,7 @@ type HomeProps = {
 
 const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
   const animationEnabled = false; // Set to `true` to enable animations, `false` to disable
-  const skipLoading = true; // Set to `true` to skip loading pages, `false` to show them
+  const skipLoading = false; // Set to `true` to skip loading pages, `false` to show them
   const [animationStep, setAnimationStep] = useState<number | null>(null);
   const [isFinalSectionVisible, setIsFinalSectionVisible] = useState(false);
   const finalSectionRef = useRef<HTMLDivElement | null>(null);
@@ -44,7 +44,7 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
         ];
 
         sequence.forEach((step, i) => {
-          setTimeout(step, i * 2000);
+          setTimeout(step, i * 1000);
         });
       }, 1000);
     }
@@ -154,13 +154,17 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
           <img
             src={Infographicinsole}
             alt="Infographic shoe"
-            className="w-full object-contain max-h-[30%] flex-shrink-0"
+            className="w-full object-contain max-h-[40%] md:max-h-[40%] lg:max-h-[40%] flex-shrink-0"
           />
           <div className="flex flex-col space-y-2 w-80">
             <div className="flex flex-col space-y-2 w-80">
-              <h3 className="text-title font-semibold">SI V1</h3>
-              <p className="text-bodyHighlight">$120</p>
-              <p className="text-body mb-4">
+              <h3 className="text-title font-semibold md:text-titlemd xl:text-titlexl">
+                SI V1
+              </h3>
+              <p className="text-bodyHighlight md:text-bodyHighlightmd xl:text-bodyHighlightxl">
+                $120
+              </p>
+              <p className="text-body md:text-bodymd lg:text-bodyxl">
                 SI V1 insoles <br />
                 Premium app access <br />
                 FREE U$45 Accessory kit included
@@ -169,7 +173,9 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
 
             {/* Size Selector */}
             <div className="flex flex-col space-y-2 pt-2">
-              <h2 className="text-h2 font-medium">Size:</h2>
+              <p className="text-bodyHighlight md:text-bodyHighlightmd xl:text-bodyHighlightxl">
+                Size:
+              </p>
               <div className="flex w-full justify-between text-h2 font-medium">
                 {["XS", "S", "M", "L", "XL"].map((size) => (
                   <span
