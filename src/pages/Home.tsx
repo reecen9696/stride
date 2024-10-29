@@ -13,7 +13,7 @@ type HomeProps = {
 };
 
 const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
-  const skipLoading = false; // Set to `true` to skip loading pages, `false` to show them
+  const skipLoading = true; // Set to `true` to skip loading pages, `false` to show them
   const [animationStep, setAnimationStep] = useState<number | null>(null);
   const [isFinalSectionVisible, setIsFinalSectionVisible] = useState(false);
   const finalSectionRef = useRef<HTMLDivElement | null>(null);
@@ -115,7 +115,7 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
           />
 
           {/* Content positioned in bottom-left corner for large screens */}
-          <div className="p-8 md:px-24 lg:px-16 xl:px-24 lg:w-1/2 xl:w-1/5 text-white z-10 relative lg:absolute lg:bottom-12 lg:left-8 hidden lg:block">
+          <div className="p-8 md:px-24 lg:px-16 xl:px-24 lg:w-1/2 xl:w-1/3 text-white z-10 relative lg:absolute lg:bottom-12 lg:left-8 hidden lg:block">
             <h3 className="text-title font-semibold md:text-titlemd xl:text-titlexl">
               SI V1
             </h3>
@@ -159,7 +159,7 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
           />
 
           {/* Content positioned in bottom-left corner for large screens */}
-          <div className="p-8 md:px-24 lg:px-16 xl:px-24 lg:w-1/2 xl:w-1/5 text-white z-10 relative lg:absolute lg:bottom-12 lg:left-8 hidden lg:block">
+          <div className="p-8 md:px-24 lg:px-16 xl:px-24 lg:w-1/2 xl:w-1/3 text-white z-10 relative lg:absolute lg:bottom-12 lg:left-8 hidden lg:block">
             <h3 className="text-title font-semibold md:text-titlemd xl:text-titlexl">
               Stay on track
             </h3>

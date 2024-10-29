@@ -1,5 +1,3 @@
-// src/components/Purchase.tsx
-
 import React, { useState } from "react";
 import Infographicinsole from "../assets/images/infographicinsole.png";
 import PurchaseButton from "./PurchaseButton";
@@ -8,7 +6,7 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 const Purchase: React.FC = () => {
   const [selectedSize, setSelectedSize] = useState("M");
   const [currentImage, setCurrentImage] = useState(0);
-  const images = [Infographicinsole, Infographicinsole, Infographicinsole]; // Example images array
+  const images = [Infographicinsole, Infographicinsole, Infographicinsole];
 
   // Carousel Navigation
   const goToPreviousImage = () => {
@@ -20,8 +18,9 @@ const Purchase: React.FC = () => {
   };
 
   return (
-    <div className="w-full h-screen flex justify-center">
-      <section className="w-full h-screen snap-start overflow-y-auto flex flex-col items-center justify-center px-8 xl:w-[50%]">
+    <div className="w-full h-full md:flex md:justify-center">
+      {/* On small screens, align content to the top */}
+      <section className="w-full h-screen snap-start overflow-y-auto flex flex-col items-center sm:justify-start px-8 pt-16 m:pt-48 l:xl:pt-48 xl:pt-48 xl:w-[50%]">
         {/* Responsive container for image and details sections */}
         <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Image Carousel */}
@@ -97,7 +96,7 @@ const Purchase: React.FC = () => {
         </div>
 
         {/* Description and Tech Specs Section - Below the main grid */}
-        <div className="w-full pt-8">
+        <div className="w-full pt-8 pb-24">
           <details className="w-full md:hidden">
             <summary className="cursor-pointer text-bodyHighlight font-semibold">
               DESCRIPTION
