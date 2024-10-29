@@ -122,7 +122,7 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
             <p className="text-bodyHighlight md:text-bodyHighlightmd xl:text-bodyHighlightxl">
               $120
             </p>
-            <p className="text-body md:text-bodymd lg:text-bodyxl">
+            <p className="text-body md:text-body lg:text-bodymd">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
@@ -141,7 +141,7 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
             <p className="text-bodyHighlight md:text-bodyHighlightmd xl:text-bodyHighlightxl">
               $120
             </p>
-            <p className="text-body md:text-bodymd lg:text-bodyxl">
+            <p className="text-body md:text-body lg:text-bodymd">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
@@ -154,7 +154,7 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
           <img
             src={Infographic}
             alt="Infographic shoe"
-            className="w-[80%] h-[80%] max-h-[80vh] object-contain hidden lg:block absolute inset-0 m-auto"
+            className="w-[60%] h-[60%] max-h-[80vh] object-contain hidden lg:block absolute inset-0 m-auto"
             style={{ top: "10%", left: "10%", right: "10%", bottom: "10%" }}
           />
 
@@ -163,7 +163,7 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
             <h3 className="text-title font-semibold md:text-titlemd xl:text-titlexl">
               Stay on track
             </h3>
-            <p className="text-body md:text-bodymd lg:text-bodyxl">
+            <p className="text-body md:text-body lg:text-bodymd">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
@@ -179,7 +179,7 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
             <h3 className="text-title font-semibold md:text-titlemd xl:text-titlexl">
               Stay on track
             </h3>
-            <p className="text-body md:text-bodymd lg:text-bodyxl">
+            <p className="text-body md:text-body lg:text-bodymd">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
