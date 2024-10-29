@@ -13,7 +13,7 @@ type HomeProps = {
 };
 
 const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
-  const skipLoading = true; // Set to `true` to skip loading pages, `false` to show them
+  const skipLoading = false; // Set to `true` to skip loading pages, `false` to show them
   const [animationStep, setAnimationStep] = useState<number | null>(null);
   const [isFinalSectionVisible, setIsFinalSectionVisible] = useState(false);
   const finalSectionRef = useRef<HTMLDivElement | null>(null);
@@ -64,7 +64,9 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
   }, []);
 
   return (
-    <div>
+    <div className="snap-y snap-mandatory h-screen overflow-hidden">
+      {" "}
+      {/* Ensures no overflow for snapping */}
       {/* Initial Animation Steps */}
       <div
         className={`${
@@ -96,7 +98,6 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
           Measure what moves you
         </p>
       </div>
-
       {/* Full Scroll Page Content with Fade-in Transition */}
       <div
         className={`${
@@ -104,13 +105,13 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
         } snap-y snap-mandatory h-screen overflow-y-scroll`}
       >
         {/* Page 1 - Video */}
-        <section className="w-full h-screen flex flex-col items-center justify-start pt-20 snap-start">
+        <section className="w-full min-h-screen flex flex-col items-center justify-start pt-20 snap-start lg:pt-24 lg:px-16 xl:px-24">
           <img
             src={ShoeGif}
             alt="Shoe"
-            className="w-full object-contain max-h-[50%] md:max-h-[70%] lg:max-h-[80%]"
+            className="w-full max-w-lg object-contain max-h-[50vh] md:max-h-[70vh] lg:max-h-[40vh]"
           />
-          <div className=" p-8 md:px-24 lg:px-0 flex flex-col lg:w-[50%] xl:w-[40%] space-y-2">
+          <div className="p-8 md:px-24 lg:px-0 flex flex-col lg:w-[50%] xl:w-[40%] space-y-2">
             <h3 className="text-title font-semibold md:text-titlemd xl:text-titlexl">
               SI V1
             </h3>
@@ -125,13 +126,13 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
         </section>
 
         {/* Page 2 - App info */}
-        <section className="w-full h-screen flex flex-col items-center justify-start pt-20 snap-start">
+        <section className="w-full min-h-screen flex flex-col items-center justify-start pt-20 snap-start lg:pt-24 lg:px-16 xl:px-24">
           <img
             src={Infographic}
             alt="Infographic shoe"
-            className="w-full object-contain max-h-[50%] md:max-h-[70%] lg:max-h-[80%]"
+            className="w-full max-w-lg object-contain max-h-[50vh] md:max-h-[70vh] lg:max-h-[40vh]"
           />
-          <div className=" p-8 md:px-24 lg:px-0 flex flex-col lg:w-[50%] xl:w-[40%] space-y-2">
+          <div className="p-8 md:px-24 lg:px-0 flex flex-col lg:w-[50%] xl:w-[40%] space-y-2">
             <h3 className="text-title font-semibold md:text-titlemd xl:text-titlexl">
               Stay on track
             </h3>
