@@ -13,7 +13,7 @@ type HomeProps = {
 };
 
 const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
-  const skipLoading = true; // Set to `true` to skip loading pages, `false` to show them
+  const skipLoading = false; // Set to `true` to skip loading pages, `false` to show them
   const [animationStep, setAnimationStep] = useState<number | null>(null);
   const [isFinalSectionVisible, setIsFinalSectionVisible] = useState(false);
   const finalSectionRef = useRef<HTMLDivElement | null>(null);
@@ -105,13 +105,36 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
         } snap-y snap-mandatory h-screen overflow-y-scroll`}
       >
         {/* Page 1 - Video */}
-        <section className="w-full min-h-screen flex flex-col items-center justify-start pt-20 snap-start lg:pt-24 lg:px-16 xl:px-24">
+        <section className="w-full min-h-screen flex items-center justify-center snap-start relative">
+          {/* Image for large and extra-large screens only */}
           <img
             src={ShoeGif}
             alt="Shoe"
-            className="w-full max-w-lg object-contain max-h-[50vh] md:max-h-[70vh] lg:max-h-[40vh]"
+            className="w-[80%] h-[80%] max-h-[80vh] object-contain hidden lg:block absolute inset-0 m-auto"
+            style={{ top: "10%", left: "10%", right: "10%", bottom: "10%" }}
           />
-          <div className="p-8 md:px-24 lg:px-0 flex flex-col lg:w-[50%] xl:w-[40%] space-y-2">
+
+          {/* Content positioned in bottom-left corner for large screens */}
+          <div className="p-8 md:px-24 lg:px-16 xl:px-24 lg:w-1/2 xl:w-1/5 text-white z-10 relative lg:absolute lg:bottom-12 lg:left-8 hidden lg:block">
+            <h3 className="text-title font-semibold md:text-titlemd xl:text-titlexl">
+              SI V1
+            </h3>
+            <p className="text-bodyHighlight md:text-bodyHighlightmd xl:text-bodyHighlightxl">
+              $120
+            </p>
+            <p className="text-body md:text-bodymd lg:text-bodyxl">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+          </div>
+
+          {/* Content for small and medium screens */}
+          <div className="p-8 md:px-24 lg:px-16 xl:px-24 lg:w-[50%] xl:w-[40%] space-y-2 block lg:hidden">
+            <img
+              src={ShoeGif}
+              alt="Shoe"
+              className="w-full max-w-lg object-contain max-h-[50vh] md:max-h-[70vh] lg:max-h-[40vh]"
+            />
             <h3 className="text-title font-semibold md:text-titlemd xl:text-titlexl">
               SI V1
             </h3>
@@ -125,14 +148,34 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
           </div>
         </section>
 
-        {/* Page 2 - App info */}
-        <section className="w-full min-h-screen flex flex-col items-center justify-start pt-20 snap-start lg:pt-24 lg:px-16 xl:px-24">
+        {/* Page 2 - App Info */}
+        <section className="w-full min-h-screen flex items-center justify-center snap-start relative">
+          {/* Image for large and extra-large screens only */}
           <img
             src={Infographic}
             alt="Infographic shoe"
-            className="w-full max-w-lg object-contain max-h-[50vh] md:max-h-[70vh] lg:max-h-[40vh]"
+            className="w-[80%] h-[80%] max-h-[80vh] object-contain hidden lg:block absolute inset-0 m-auto"
+            style={{ top: "10%", left: "10%", right: "10%", bottom: "10%" }}
           />
-          <div className="p-8 md:px-24 lg:px-0 flex flex-col lg:w-[50%] xl:w-[40%] space-y-2">
+
+          {/* Content positioned in bottom-left corner for large screens */}
+          <div className="p-8 md:px-24 lg:px-16 xl:px-24 lg:w-1/2 xl:w-1/5 text-white z-10 relative lg:absolute lg:bottom-12 lg:left-8 hidden lg:block">
+            <h3 className="text-title font-semibold md:text-titlemd xl:text-titlexl">
+              Stay on track
+            </h3>
+            <p className="text-body md:text-bodymd lg:text-bodyxl">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+          </div>
+
+          {/* Content for small and medium screens */}
+          <div className="p-8 md:px-24 lg:px-16 xl:px-24 lg:w-[50%] xl:w-[40%] space-y-2 block lg:hidden">
+            <img
+              src={Infographic}
+              alt="Infographic shoe"
+              className="w-full max-w-lg object-contain max-h-[50vh] md:max-h-[70vh] lg:max-h-[40vh]"
+            />
             <h3 className="text-title font-semibold md:text-titlemd xl:text-titlexl">
               Stay on track
             </h3>
