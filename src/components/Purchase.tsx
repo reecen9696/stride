@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import Infographicinsole from "../assets/images/infographicinsole.png";
 import PurchaseButton from "./PurchaseButton";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import Purchase1 from "../assets/images/purchase/purchase1.png";
+import Purchase2 from "../assets/images/purchase/purchase2.png";
+import Purchase3 from "../assets/images/purchase/purchase3.png";
 
 const Purchase: React.FC = () => {
   const [selectedSize, setSelectedSize] = useState("M");
   const [currentImage, setCurrentImage] = useState(0);
-  const images = [Infographicinsole, Infographicinsole, Infographicinsole];
+  const images = [Purchase1, Purchase2, Purchase3];
 
   // Carousel Navigation
   const goToPreviousImage = () => {

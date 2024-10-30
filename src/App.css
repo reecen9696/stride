@@ -100,3 +100,15 @@ body {
 #product-component-1730069069545 .shopify-buy__btn:focus {
   background-color: #e4e600 !important;
 }
+
+.transition-color {
+  transition: color 0.5s ease;
+}
+
+img[src*="chevron.svg"] {
+  filter: invert(1);
+}
+
+.text-black img[src*="chevron.svg"] {
+  filter: invert(0);
+}

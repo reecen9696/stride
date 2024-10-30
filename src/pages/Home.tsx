@@ -6,6 +6,7 @@ import Infographic from "../assets/images/infographic.png";
 import Chevron from "../assets/icons/chevron.svg";
 import "../App.css";
 import Purchase from "../components/Purchase";
+import VideoFile from "../assets/videos/samplevideo.mp4";
 
 // Define prop type for setLogoColor
 type HomeProps = {
@@ -16,6 +17,7 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
   const skipLoading = true; // Set to `true` to skip loading pages, `false` to show them
   const [animationStep, setAnimationStep] = useState<number | null>(null);
   const [isFinalSectionVisible, setIsFinalSectionVisible] = useState(false);
+  const [isSecondPageVisible, setIsSecondPageVisible] = useState(false);
   const finalSectionRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -40,7 +42,7 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
         ];
 
         sequence.forEach((step, i) => {
-          setTimeout(step, i * 1000);
+          setTimeout(step, i * 800);
         });
       }, 1000);
     }
@@ -62,6 +64,31 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
       if (currentRef) observer.unobserve(currentRef);
     };
   }, []);
+
+  useEffect(() => {
+    const secondPageRef = document.getElementById("second-page");
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsSecondPageVisible(entry.isIntersecting);
+      },
+      { threshold: 0.5 }
+    );
+
+    if (secondPageRef) observer.observe(secondPageRef);
+
+    return () => {
+      if (secondPageRef) observer.unobserve(secondPageRef);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isSecondPageVisible) {
+      setLogoColor("black"); // Change to black when on the second page
+    } else {
+      setLogoColor("white"); // Change back to white when not on the second page
+    }
+  }, [isSecondPageVisible, setLogoColor]);
 
   return (
     <div className="snap-y snap-mandatory h-screen overflow-hidden">
@@ -148,18 +175,44 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
           </div>
         </section>
 
-        {/* Page 2 - App Info */}
-        <section className="w-full min-h-screen flex items-center justify-center snap-start relative">
-          {/* Image for large and extra-large screens only */}
+        {/* Page 2 - App Info with Video and Infographic */}
+        <section
+          id="second-page"
+          className="w-full min-h-screen flex items-center justify-center snap-start relative bg-highlight"
+        >
+          {/* Video Background - Large screens */}
+          <div className="absolute w-[11%] h-[30%] top-[30%] left-[44%] overflow-hidden hidden lg:block">
+            <video
+              className="w-full h-full object-contain max-w-full max-h-full"
+              src={VideoFile}
+              autoPlay
+              loop
+              muted
+              playsInline
+            />
+          </div>
+
+          {/* Video Background - Small and Medium screens */}
+          <div className="absolute w-[40%] h-[24%] top-[26.5%] inset-0 mx-auto overflow-hidden block lg:hidden">
+            <video
+              className="w-full h-full object-contain max-w-full max-h-full"
+              src={VideoFile}
+              autoPlay
+              loop
+              muted
+              playsInline
+            />
+          </div>
+
+          {/* Infographic Image - Large screens */}
           <img
             src={Infographic}
-            alt="Infographic shoe"
-            className="w-[60%] h-[60%] max-h-[80vh] object-contain hidden lg:block absolute inset-0 m-auto"
-            style={{ top: "10%", left: "10%", right: "10%", bottom: "10%" }}
+            alt="Infographic with phone hole"
+            className="w-[60%] h-[60%] max-h-[80vh] object-contain z-10 absolute inset-0 m-auto hidden lg:block"
           />
 
           {/* Content positioned in bottom-left corner for large screens */}
-          <div className="p-8 md:px-24 lg:px-16 xl:px-24 lg:w-1/2 xl:w-1/3 text-white z-10 relative lg:absolute lg:bottom-12 lg:left-8 hidden lg:block">
+          <div className="p-8 md:px-24 lg:px-16 xl:px-24 lg:w-1/2 xl:w-1/3 text-black z-20 relative lg:absolute lg:bottom-12 lg:left-8 hidden lg:block">
             <h3 className="text-title font-semibold md:text-titlemd xl:text-titlexl">
               Stay on track
             </h3>
@@ -169,24 +222,24 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
             </p>
           </div>
 
-          {/* Content for small and medium screens */}
-          <div className="p-8 md:px-24 lg:px-16 xl:px-24 lg:w-[50%] xl:w-[40%] space-y-2 block lg:hidden">
+          {/* Video and Infographic for small and medium screens */}
+          <div className="p-8 md:px-24 lg:px-16 xl:px-24 lg:w-[50%] xl:w-[40%] space-y-2 block lg:hidden z-20 relative">
             <img
               src={Infographic}
-              alt="Infographic shoe"
-              className="w-full max-w-lg object-contain max-h-[50vh] md:max-h-[70vh] lg:max-h-[40vh]"
+              alt="Infographic with phone hole"
+              className="w-full max-w-lg object-contain max-h-[55vh] md:max-h-[70vh] lg:max-h-[40vh]"
             />
-            <h3 className="text-title font-semibold md:text-titlemd xl:text-titlexl">
+            <h3 className="text-title text-black font-semibold md:text-titlemd xl:text-titlexl pt-4">
               Stay on track
             </h3>
-            <p className="text-body md:text-body lg:text-bodymd">
+            <p className="text-body md:text-body  text-black lg:text-bodymd pb-2">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
           </div>
         </section>
 
-        {/* Page 3 - Purchase Component */}
+        {/* Other Sections */}
         <div ref={finalSectionRef}>
           <Purchase />
         </div>
@@ -194,11 +247,30 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
         {/* Scroll Indicator */}
         <div
           className={`w-full fixed bottom-0 flex flex-col items-center p-4 transition-opacity duration-500 ${
-            isFinalSectionVisible ? "opacity-0" : "opacity-100"
+            isFinalSectionVisible ? "opacity-0 text-black" : "opacity-100"
+          } ${
+            isSecondPageVisible && !isFinalSectionVisible
+              ? "text-black"
+              : "text-white"
           }`}
         >
-          <p className="text-h3 md:text-h3md">Scroll</p>
-          <img src={Chevron} alt="chevron" />
+          <p className="text-h3 md:text-h3md transition-color">Scroll</p>
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 transition-color"
+          >
+            <path
+              d="M19 9L12 16L5 9"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
         </div>
       </div>
     </div>
