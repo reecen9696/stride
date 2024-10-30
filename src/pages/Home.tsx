@@ -7,6 +7,7 @@ import Chevron from "../assets/icons/chevron.svg";
 import "../App.css";
 import Purchase from "../components/Purchase";
 import VideoFile from "../assets/videos/samplevideo.mp4";
+import { useSwipeable } from "react-swipeable";
 
 // Define prop type for setLogoColor
 type HomeProps = {
@@ -14,7 +15,7 @@ type HomeProps = {
 };
 
 const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
-  const skipLoading = true; // Set to `true` to skip loading pages, `false` to show them
+  const skipLoading = false; // Set to `true` to skip loading pages, `false` to show them
   const [animationStep, setAnimationStep] = useState<number | null>(null);
   const [isFinalSectionVisible, setIsFinalSectionVisible] = useState(false);
   const [isSecondPageVisible, setIsSecondPageVisible] = useState(false);
@@ -178,7 +179,7 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
         {/* Page 2 - App Info with Video and Infographic */}
         <section
           id="second-page"
-          className="w-full min-h-screen flex items-center justify-center snap-start relative bg-highlight"
+          className="w-full min-h-screen flex items-center justify-center snap-start relative bg-white"
         >
           {/* Video Background - Large screens */}
           <div className="absolute w-[11%] h-[30%] top-[30%] left-[44%] overflow-hidden hidden lg:block">
