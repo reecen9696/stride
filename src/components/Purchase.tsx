@@ -11,29 +11,63 @@ const Purchase: React.FC = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const images = [Purchase1, Purchase2, Purchase3];
 
-  // Carousel Navigation
+  // Swap the logic for previous and next
   const goToPreviousImage = () => {
-    setCurrentImage((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+    setCurrentImage((prev) => (prev === images.length - 1 ? 0 : prev + 1));
   };
 
   const goToNextImage = () => {
-    setCurrentImage((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+    setCurrentImage((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
+
+  // Swipe functionality
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    const distance = touchStart - touchEnd;
+    const threshold = 50;
+
+    if (distance > threshold) {
+      goToNextImage();
+    } else if (distance < -threshold) {
+      goToPreviousImage();
+    }
   };
 
   return (
     <div className="w-full h-full md:flex md:justify-center">
-      {/* On small screens, align content to the top */}
-      <section className="w-full h-screen snap-start overflow-y-auto flex flex-col items-center sm:justify-start px-8 pt-16 m:pt-48 l:xl:pt-48 xl:pt-48 xl:w-[50%]">
-        {/* Responsive container for image and details sections */}
+      <section className="w-full h-screen snap-start overflow-y-auto flex flex-col items-center sm:justify-start px-9 pt-32 xl:pt-48 xl:w-[50%]">
         <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Image Carousel */}
-          <div className="flex flex-col items-center">
-            <div className="relative w-full aspect-square">
-              <img
-                src={images[currentImage]}
-                alt="Product"
-                className="object-cover w-auto h-full"
-              />
+          {/* Swipeable Image Carousel with Sliding Effect */}
+          <div
+            className="relative w-full overflow-hidden"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
+            <div
+              className="flex transition-transform duration-500 ease-in-out"
+              style={{
+                transform: `translateX(-${currentImage * 100}%)`,
+              }}
+            >
+              {images.map((image, index) => (
+                <img
+                  key={index}
+                  src={image}
+                  alt={`Product ${index + 1}`}
+                  className="object-cover w-full"
+                />
+              ))}
             </div>
             <div className="flex items-center justify-between w-full mt-4">
               <FaChevronLeft
@@ -68,9 +102,7 @@ const Purchase: React.FC = () => {
               </p>
               <p className="text-body text-white hidden md:block">
                 Detailed product description goes here. It will provide
-                information about the product features and benefits. Detailed
-                product description goes here. It will provide information about
-                the product features and benefits.
+                information about the product features and benefits.
               </p>
             </div>
 
@@ -98,7 +130,7 @@ const Purchase: React.FC = () => {
           </div>
         </div>
 
-        {/* Description and Tech Specs Section - Below the main grid */}
+        {/* Description and Tech Specs Section */}
         <div className="w-full pt-8 pb-24">
           <details className="w-full md:hidden">
             <summary className="cursor-pointer text-bodyHighlight font-semibold">
@@ -118,8 +150,7 @@ const Purchase: React.FC = () => {
             </summary>
             <div className="mt-2">
               <p className="text-body text-white">
-                Technical specifications of the product are listed here. This
-                section includes dimensions, materials, etc.
+                Technical specifications of the product are listed here.
               </p>
             </div>
           </details>
@@ -129,8 +160,7 @@ const Purchase: React.FC = () => {
             </summary>
             <div className="mt-2">
               <p className="text-body text-white">
-                Technical specifications of the product are listed here. This
-                section includes dimensions, materials, etc.
+                Information about shipping and returns.
               </p>
             </div>
           </details>
@@ -140,8 +170,7 @@ const Purchase: React.FC = () => {
             </summary>
             <div className="mt-2">
               <p className="text-body text-white">
-                Technical specifications of the product are listed here. This
-                section includes dimensions, materials, etc.
+                Details about the product warranty.
               </p>
             </div>
           </details>

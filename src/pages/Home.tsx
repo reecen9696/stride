@@ -15,7 +15,7 @@ type HomeProps = {
 };
 
 const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
-  const skipLoading = false; // Set to `true` to skip loading pages, `false` to show them
+  const skipLoading = true; // Set to `true` to skip loading pages, `false` to show them
   const [animationStep, setAnimationStep] = useState<number | null>(null);
   const [isFinalSectionVisible, setIsFinalSectionVisible] = useState(false);
   const [isSecondPageVisible, setIsSecondPageVisible] = useState(false);
@@ -163,15 +163,15 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
               alt="Shoe"
               className="w-full max-w-lg object-contain max-h-[50vh] md:max-h-[70vh] lg:max-h-[40vh]"
             />
-            <h3 className="text-title font-semibold md:text-titlemd xl:text-titlexl">
+            <h3 className="text-title font-semibold md:text-titlemd xl:text-titlexl ">
               SI V1
             </h3>
-            <p className="text-bodyHighlight md:text-bodyHighlightmd xl:text-bodyHighlightxl">
+            <p className="text-bodyHighlight md:text-bodyHighlightmd xl:text-bodyHighlightxl ">
               $120
             </p>
-            <p className="text-body md:text-body lg:text-bodymd">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <p className="text-body md:text-body lg:text-bodymd ">
+              Stride smart insoles transforms every step, using high-tech
+              sensors to measure pressure, balance, and movement.
             </p>
           </div>
         </section>
@@ -194,7 +194,7 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
           </div>
 
           {/* Video Background - Small and Medium screens */}
-          <div className="absolute w-[40%] h-[24%] top-[26.5%] inset-0 mx-auto overflow-hidden block lg:hidden">
+          <div className="absolute w-[40%] h-[24%] top-[27.5%] inset-0 mx-auto overflow-hidden block lg:hidden">
             <video
               className="w-full h-full object-contain max-w-full max-h-full"
               src={VideoFile}
@@ -218,8 +218,8 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
               Stay on track
             </h3>
             <p className="text-body md:text-body lg:text-bodymd">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Track your running form live, with precise feedback on which body
+              parts are under strain and may risk injury.
             </p>
           </div>
 
@@ -234,8 +234,8 @@ const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
               Stay on track
             </h3>
             <p className="text-body md:text-body  text-black lg:text-bodymd pb-2">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Track your running form live, with precise feedback on which body
+              parts are under strain and may risk injury.
             </p>
           </div>
         </section>
