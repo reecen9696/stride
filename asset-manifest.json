@@ -1,20 +1,22 @@
 {
   "files": {
-    "main.css": "/stride/static/css/main.d92c6d7d.css",
-    "main.js": "/stride/static/js/main.38eba067.js",
+    "main.css": "/stride/static/css/main.5edb4f84.css",
+    "main.js": "/stride/static/js/main.2479c873.js",
     "static/js/453.0923e096.chunk.js": "/stride/static/js/453.0923e096.chunk.js",
     "static/media/spinningshoe.gif": "/stride/static/media/spinningshoe.66d40e0aab7f9c438c66.gif",
-    "static/media/infographicinsole.png": "/stride/static/media/infographicinsole.7c48e1b191cf88567a2c.png",
-    "static/media/infographic.png": "/stride/static/media/infographic.d7ced68e5a62b2a12670.png",
+    "static/media/purchase3.png": "/stride/static/media/purchase3.02a456c0ba5a94077bdd.png",
+    "static/media/samplevideo.mp4": "/stride/static/media/samplevideo.db33a626644d97a4ff64.mp4",
+    "static/media/infographic.png": "/stride/static/media/infographic.e2056a6a1fb7890c3238.png",
+    "static/media/purchase2.png": "/stride/static/media/purchase2.14cc0beb6f6f62899954.png",
+    "static/media/purchase1.png": "/stride/static/media/purchase1.78a9742d040c3dbe79b8.png",
     "static/media/logo.svg": "/stride/static/media/logo.3bec2eaa740fe0ef118ad9fed3391107.svg",
     "index.html": "/stride/index.html",
-    "static/media/chevron.svg": "/stride/static/media/chevron.d6679906766688cb2f09a39b8acec2e9.svg",
-    "main.d92c6d7d.css.map": "/stride/static/css/main.d92c6d7d.css.map",
-    "main.38eba067.js.map": "/stride/static/js/main.38eba067.js.map",
+    "main.5edb4f84.css.map": "/stride/static/css/main.5edb4f84.css.map",
+    "main.2479c873.js.map": "/stride/static/js/main.2479c873.js.map",
     "453.0923e096.chunk.js.map": "/stride/static/js/453.0923e096.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d92c6d7d.css",
-    "static/js/main.38eba067.js"
+    "static/css/main.5edb4f84.css",
+    "static/js/main.2479c873.js"
   ]
 }
