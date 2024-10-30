@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/stride/static/css/main.5edb4f84.css",
-    "main.js": "/stride/static/js/main.2479c873.js",
+    "main.css": "/stride/static/css/main.c9834d33.css",
+    "main.js": "/stride/static/js/main.9544546e.js",
     "static/js/453.0923e096.chunk.js": "/stride/static/js/453.0923e096.chunk.js",
     "static/media/spinningshoe.gif": "/stride/static/media/spinningshoe.66d40e0aab7f9c438c66.gif",
     "static/media/purchase3.png": "/stride/static/media/purchase3.02a456c0ba5a94077bdd.png",
@@ -11,12 +11,12 @@
     "static/media/purchase1.png": "/stride/static/media/purchase1.78a9742d040c3dbe79b8.png",
     "static/media/logo.svg": "/stride/static/media/logo.3bec2eaa740fe0ef118ad9fed3391107.svg",
     "index.html": "/stride/index.html",
-    "main.5edb4f84.css.map": "/stride/static/css/main.5edb4f84.css.map",
-    "main.2479c873.js.map": "/stride/static/js/main.2479c873.js.map",
+    "main.c9834d33.css.map": "/stride/static/css/main.c9834d33.css.map",
+    "main.9544546e.js.map": "/stride/static/js/main.9544546e.js.map",
     "453.0923e096.chunk.js.map": "/stride/static/js/453.0923e096.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5edb4f84.css",
-    "static/js/main.2479c873.js"
+    "static/css/main.c9834d33.css",
+    "static/js/main.9544546e.js"
   ]
 }
