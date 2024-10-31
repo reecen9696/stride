@@ -15,7 +15,7 @@ type HomeProps = {
 };
 
 const Home: React.FC<HomeProps> = ({ setLogoColor }) => {
-  const skipLoading = true; // Set to `true` to skip loading pages, `false` to show them
+  const skipLoading = false; // Set to `true` to skip loading pages, `false` to show them
   const [animationStep, setAnimationStep] = useState<number | null>(null);
   const [isFinalSectionVisible, setIsFinalSectionVisible] = useState(false);
   const [isSecondPageVisible, setIsSecondPageVisible] = useState(false);
